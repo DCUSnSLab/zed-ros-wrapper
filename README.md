@@ -1,12 +1,13 @@
-![](./images/Picto+STEREOLABS_Black.jpg)
+<h1 align="center">
+   <img src="./images/Picto+STEREOLABS_Black.jpg" alt="Stereolabs" title="Stereolabs" /><br \>
+   ROS Noetic Ninjemis Integration
+</h1>
 
-# Stereolabs ZED Camera - ROS Noetic Ninjemis Integration
-
-This package lets you use the ZED stereo camera with ROS. It outputs the camera left and right images, depth map, point cloud, pose information and supports the use of multiple ZED cameras.
+This package lets you use the ZED stereo camera with ROS. It outputs the camera's left and right images, depth map, point cloud, and pose information and supports the use of multiple ZED cameras.
 
 [More information](https://www.stereolabs.com/documentation/guides/using-zed-with-ros/introduction.html)
 
-**Note:** The `zed_interfaces` package has been removed from this repository and moved to its own [`zed-ros-interfaces` repository](https://github.com/stereolabs/zed-ros-interfaces) for allowing better integration of the ZED Wrapper on remote ground stations that do not require the full package to be installed. To update your repository please follow the [new update instructions](https://github.com/stereolabs/zed-ros-wrapper#update-the-repository). For more information please read issue [#750](https://github.com/stereolabs/zed-ros-wrapper/issues/750).
+**Note:** The `zed_interfaces` package has been removed from this repository and moved to its own [`zed-ros-interfaces` repository](https://github.com/stereolabs/zed-ros-interfaces) to allow better integration of the ZED Wrapper on remote ground stations that do not require the full package to be installed. To update your repository please follow the [new update instructions](https://github.com/stereolabs/zed-ros-wrapper#update-the-repository). For more information please read issue [#750](https://github.com/stereolabs/zed-ros-wrapper/issues/750).
 
 ## Getting started
 
@@ -17,30 +18,28 @@ This package lets you use the ZED stereo camera with ROS. It outputs the camera 
 ### Prerequisites
 
 - Ubuntu 20.04
-- [ZED SDK **≥ 4.0**](https://www.stereolabs.com/developers/) and its dependency [CUDA](https://developer.nvidia.com/cuda-downloads)
+- [ZED SDK **v4.1**](https://www.stereolabs.com/developers/) and its dependency [CUDA](https://developer.nvidia.com/cuda-downloads)
 - [ROS Noetic](http://wiki.ros.org/noetic/Installation/Ubuntu)
 
 ### Build the repository
 
 The zed_ros_wrapper is a catkin package. It depends on the following ROS packages:
 
-   - nav_msgs
-   - tf2_geometry_msgs
-   - message_runtime
-   - catkin
-   - roscpp
-   - stereo_msgs
-   - rosconsole
-   - robot_state_publisher
-   - urdf
-   - sensor_msgs
-   - image_transport
-   - roslint
-   - diagnostic_updater
-   - dynamic_reconfigure
-   - tf2_ros
-   - message_generation
-   - nodelet
+ - roscpp
+- image_transport
+- rosconsole
+- sensor_msgs
+- stereo_msgs
+- std_msgs
+- std_srvs
+- message_filters
+- tf2_ros
+- nodelet
+- tf2_geometry_msgs
+- message_generation
+- diagnostic_updater    
+- dynamic_reconfigure
+- zed_interfaces
 
 Open a terminal, clone the repository, update the dependencies and build the packages:
 
@@ -93,7 +92,7 @@ ZED X Mini camera:
 
     $ roslaunch zed_wrapper zedxm.launch  
 
- To select the ZED from its serial number:
+ To select the camera from its serial number:
  
      $ roslaunch zed_wrapper zed.launch serial_number:=1010 #replace 1010 with the actual SN
 
@@ -109,7 +108,7 @@ The SDK v3.0 introduces the Object Detection and Tracking module. **The Object D
 
 The Object Detection can be enabled *automatically* when the node start setting the parameter `object_detection/od_enabled` to `true` in the file `common.yaml`.
 
-The Object Detection can be enabled/disabled *manually* calling the services `start_object_detection` and `stop_object_detection`.
+The Object Detection can be enabled/disabled *manually* calling the service `enable_object_detection`.
 
 ### Body Tracking
 The Body Tracking module is not available for the ZED ROS Wrapper. Please consider migrating to the [ZED ROS2 Wrapper](https://github.com/stereolabs/zed-ros2-wrapper) if you need it.
